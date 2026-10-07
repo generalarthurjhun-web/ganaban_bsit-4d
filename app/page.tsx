@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Check, ChevronRight, CreditCard, Minus, Plus, Printer, QrCode, ReceiptText, RotateCw, ShoppingBag, Trash2 } from 'lucide-react';
 import { products } from '@/lib/products';
 import { calculateSubtotal, calculateTotal, generateTransactionNumber, peso } from '@/lib/utils';
+import { advanceOrderNumber, loadOrderNumber } from '@/lib/orderNumber';
 import type { CartItem, PaymentMethod, Transaction } from '@/lib/types';
 
 type Screen = 'order' | 'summary' | 'payment' | 'cash' | 'qr' | 'card' | 'card-processing' | 'success' | 'receipt';
@@ -21,8 +22,7 @@ export default function Home() {
   const itemCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('campus-cafe-order-number');
-    if (saved) setOrderNumber(saved);
+    setOrderNumber(loadOrderNumber());
   }, []);
 
   function feedback(message: string) {
@@ -86,10 +86,9 @@ export default function Home() {
   }
 
   function resetTransaction() {
-    const nextOrder = String(Number(orderNumber) + 1).padStart(3, '0');
+    const nextOrder = advanceOrderNumber(orderNumber);
     setCart([]); setPaymentMethod(null); setPaidInput(''); setError(''); setTransaction(null); setToast('');
     setOrderNumber(nextOrder);
-    localStorage.setItem('campus-cafe-order-number', nextOrder);
     setScreen('order');
   }
 
