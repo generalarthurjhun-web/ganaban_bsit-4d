@@ -12,6 +12,7 @@ A touchscreen friendly self service ordering kiosk for the IT415 Practical Exami
 - Simulated QR and card payment flows.
 - Payment success screen with a unique transaction reference.
 - Receipt values generated from the completed transaction.
+- Print Receipt opens the browser print dialog and prints only the completed receipt, without kiosk controls.
 - New Order clears the customer transaction and advances the display order number.
 - Responsive layout and localStorage persistence for the display order number only.
 

@@ -3,6 +3,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+  body, .app-shell { background: white !important; }
+  body * { visibility: hidden; }
+  #printable-receipt, #printable-receipt * { visibility: visible; }
+  #printable-receipt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 16px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: black;
+  }
+  .topbar, .receipt-actions, .toast { display: none !important; }
+  .receipt-row, .receipt-total, .receipt-payment { break-inside: avoid; }
+}
+
 :root { --ink: #342820; --muted: #8b7d72; --orange: #e87535; --cream: #fffaf3; --line: #f0e6da; }
 * { box-sizing: border-box; }
 body { margin: 0; background: #fffaf4; color: var(--ink); font-family: 'DM Sans', sans-serif; }
