@@ -14,6 +14,7 @@ A touchscreen friendly self service ordering kiosk for the IT415 Practical Exami
 - Receipt values generated from the completed transaction.
 - New Order clears the customer transaction and advances the display order number.
 - Responsive layout and localStorage persistence for the display order number only.
+- Ordering and New Order reset continue working when browser storage is blocked; invalid saved order numbers fall back to `001`.
 
 ## Technology Stack
 
